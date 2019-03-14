@@ -13,10 +13,12 @@ public interface TaskService {
 
     List<Task> getTasksByUserId(String userId);
 
-    Task assignTaskToUser(String taskId, User user);
+    Task assignTaskToUser(String taskId, User user) throws TaskPlannerException;
 
     void removeTask(String taskId);
 
     Task updateTask(Task task);
+
+    Task createTask(Task task);
 
 }

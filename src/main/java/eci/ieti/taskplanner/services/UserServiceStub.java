@@ -17,6 +17,12 @@ public class UserServiceStub implements UserService {
     public UserServiceStub() {
         this.users = new ArrayList<>();
         this.usersById = new HashMap<>();
+        try {
+            this.createUser(new User("Sergio Rodriguez", "sergio200035@gmail.com", "SergioRt", "1234"));
+            this.createUser(new User("Diana Martinez", "diana@gmail.com", "Diana99", "1234"));
+        } catch (TaskPlannerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -33,10 +39,10 @@ public class UserServiceStub implements UserService {
 
     @Override
     public User createUser(User user) throws TaskPlannerException {
-        String userId = user.getEmail();
+        String userId = user.getUsername();
         if(usersById.containsKey(userId))
-            throw new TaskPlannerException(TaskPlannerException.NOT_FOUND);
-        usersById.put(user.getEmail(),user);
+            throw new TaskPlannerException(TaskPlannerException.USER_ALREADY_EXISTS);
+        usersById.put(user.getUsername(),user);
         users.add(user);
         return user;
     }
@@ -44,19 +50,20 @@ public class UserServiceStub implements UserService {
     @Override
     public User updateUser(User user) {
         for(int i = 0; i < users.size(); i++){
-            if(users.get(i).getEmail().equals(user.getEmail())){
+            if(users.get(i).getUsername().equals(user.getUsername())){
                 users.set(i,user);
             }
         }
-        usersById.replace(user.getEmail(),user);
+        usersById.replace(user.getUsername(),user);
         return user;
     }
 
     @Override
     public void removeUser(String userId) {
         for(int i = 0; i < users.size(); i++){
-            if(users.get(i).getEmail().equals(userId)){
+            if(users.get(i).getUsername().equals(userId)){
                 users.remove(i);
+                break;
             }
         }
         usersById.remove(userId);

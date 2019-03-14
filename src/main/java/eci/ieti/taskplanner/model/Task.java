@@ -1,20 +1,29 @@
 package eci.ieti.taskplanner.model;
 
-import java.util.Date;
+import java.util.Objects;
 
 public class Task {
 
-    public final static String READY = "Ready";
-    public final static String IN_PROGRESS = "In Progress";
-    public final static String DONE = "Done";
-
     private String id;
-    private Date dueDate;
+    private long dueDate;
     private User responsible;
-    private String status;
+    private State state;
     private String description;
 
     public Task() {
+    }
+
+    public Task(long dueDate, User responsible, State state, String description) {
+        this.dueDate = dueDate;
+        this.responsible = responsible;
+        this.state = state;
+        this.description = description;
+        this.id = String.valueOf(this.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dueDate, responsible, state, description);
     }
 
     public String getId() {
@@ -25,11 +34,11 @@ public class Task {
         this.id = id;
     }
 
-    public Date getDueDate() {
+    public long getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(long dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -41,12 +50,12 @@ public class Task {
         this.responsible = responsible;
     }
 
-    public String getStatus() {
-        return status;
+    public State getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(State state) {
+        this.state = state;
     }
 
     public String getDescription() {

@@ -6,13 +6,18 @@ public class User {
     private String username;
     private String password;
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String username, String password) {
         this.name = name;
         this.email = email;
+        this.username = username;
         this.password = password;
     }
 
     public User() {
+    }
+
+    public User(String email) {
+        this.email = email;
     }
 
     public String getName() {
