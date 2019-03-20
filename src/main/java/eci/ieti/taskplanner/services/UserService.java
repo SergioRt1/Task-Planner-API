@@ -9,7 +9,7 @@ public interface UserService {
 
     List<User> getUsersList();
 
-    User getUserById(String userId) throws TaskPlannerException;
+    User getUser(String username) throws TaskPlannerException;
 
     User createUser(User user) throws TaskPlannerException;
 

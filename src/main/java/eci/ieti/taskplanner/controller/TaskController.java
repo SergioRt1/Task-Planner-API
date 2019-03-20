@@ -9,17 +9,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/api/tasks")
 @CrossOrigin(origins = "*")
 public class TaskController {
 
     @Autowired
-    private TaskService service;
+    private TaskService taskService;
 
     @GetMapping
     public ResponseEntity<?> getTasksHandler() {
         try {
-            return new ResponseEntity<>(service.geTasksList(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.geTasksList(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -28,7 +28,7 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getTaskByIdHandler(@PathVariable("id") String id) {
         try {
-            return new ResponseEntity<>(service.getTaskById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.getTaskById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -38,7 +38,7 @@ public class TaskController {
     public ResponseEntity<?> getTasksByUserIdHandler(@PathVariable("userId") String userId) {
         try {
 
-            return new ResponseEntity<>(service.getTasksByUserId(userId), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.getTasksByUserId(userId), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -47,7 +47,7 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<?> createTaskHandler(@RequestBody Task task) {
         try {
-            return new ResponseEntity<>(service.createTask(task), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.createTask(task), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -56,7 +56,7 @@ public class TaskController {
     @PutMapping("/update")
     public ResponseEntity<?> updateTaskHandler(@RequestBody Task task) {
         try {
-            return new ResponseEntity<>(service.updateTask(task), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.updateTask(task), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -65,7 +65,7 @@ public class TaskController {
     @PutMapping("/assign/{taskId}")
     public ResponseEntity<?> assignTaskHandler(@PathVariable("taskId") String taskId, @RequestBody User user) {
         try {
-            return new ResponseEntity<>(service.assignTaskToUser(taskId, user), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.assignTaskToUser(taskId, user), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -74,7 +74,7 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTaskHandler(@PathVariable String id) {
         try {
-            service.removeTask(id);
+            taskService.removeTask(id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);

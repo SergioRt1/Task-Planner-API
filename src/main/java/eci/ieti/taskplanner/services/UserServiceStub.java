@@ -19,7 +19,7 @@ public class UserServiceStub implements UserService {
         this.usersById = new HashMap<>();
         try {
             this.createUser(new User("Sergio Rodriguez", "sergio200035@gmail.com", "SergioRt", "1234"));
-            this.createUser(new User("Diana Martinez", "diana@gmail.com", "Diana99", "1234"));
+            this.createUser(new User("Diana Roncancio", "diana@gmail.com", "Diana99", "1234"));
         } catch (TaskPlannerException e) {
             e.printStackTrace();
         }
@@ -31,9 +31,9 @@ public class UserServiceStub implements UserService {
     }
 
     @Override
-    public User getUserById(String userId) throws TaskPlannerException {
-        if(usersById.containsKey(userId))
-            return usersById.get(userId);
+    public User getUser(String username) throws TaskPlannerException {
+        if(usersById.containsKey(username))
+            return usersById.get(username);
         else throw new TaskPlannerException(TaskPlannerException.NOT_FOUND);
     }
 

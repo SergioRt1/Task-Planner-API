@@ -1,6 +1,7 @@
 package eci.ieti.taskplanner.model;
 
 public class User {
+
     private String name;
     private String email;
     private String username;
@@ -18,6 +19,16 @@ public class User {
 
     public User(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public String getName() {
