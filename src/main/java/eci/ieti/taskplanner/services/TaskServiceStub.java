@@ -17,10 +17,13 @@ public class TaskServiceStub implements TaskService {
         tasks = new ArrayList<>();
         taskById = new HashMap<>();
         User user1 = new User("Sergio Rodriguez", "sergio200035@gmail.com", "SergioRt", "1234");
-        User user2 = new User("Diana Martinez", "diana@gmail.com", "Diana99", "1234");
-        createTask(new Task(1552602173033L, user1, State.In_Progress, "Task Example"));
-        createTask(new Task(1552602856887L, user1, State.Completed, "Task Done"));
-        createTask(new Task(1552603534412L, user2, State.Ready, "Task Ready"));
+        User user2 = new User("Diana Roncancio", "diana@gmail.com", "Diana99", "1234");
+        createTask(new Task(1552602173033L, user1, State.In_Progress, "Task Example","SergioRt"));
+        createTask(new Task(1552602173033L, user1, State.In_Progress, "Task Example 2","Diana99"));
+        createTask(new Task(1552602856887L, user1, State.Completed, "Task Done","SergioRt"));
+        createTask(new Task(1552602856887L, user1, State.Completed, "Task Done 2","Diana99"));
+        createTask(new Task(1552603534412L, user2, State.Ready, "Task Ready","SergioRt"));
+        createTask(new Task(1552603534412L, user2, State.Ready, "Task Ready 2","Diana99"));
     }
 
     @Override
@@ -39,7 +42,7 @@ public class TaskServiceStub implements TaskService {
     public List<Task> getTasksByUserId(String userId) {
         List<Task> list = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++)
-            if (tasks.get(i).getResponsible().getUsername().equals(userId))
+            if (tasks.get(i).getOwner().equals(userId))
                 list.add(tasks.get(i));
         return list;
     }
@@ -72,6 +75,7 @@ public class TaskServiceStub implements TaskService {
 
     @Override
     public Task createTask(Task task) {
+        task.setId(String.valueOf(task.hashCode()));
         tasks.add(task);
         taskById.put(task.getId(), task);
         return task;

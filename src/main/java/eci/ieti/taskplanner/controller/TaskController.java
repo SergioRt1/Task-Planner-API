@@ -3,6 +3,7 @@ package eci.ieti.taskplanner.controller;
 import eci.ieti.taskplanner.model.Task;
 import eci.ieti.taskplanner.model.User;
 import eci.ieti.taskplanner.services.TaskService;
+import eci.ieti.taskplanner.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<?> getTasksHandler() {

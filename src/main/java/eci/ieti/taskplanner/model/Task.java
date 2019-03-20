@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Task {
 
     private String id;
+    private String owner;
     private long dueDate;
     private User responsible;
     private State state;
@@ -13,17 +14,17 @@ public class Task {
     public Task() {
     }
 
-    public Task(long dueDate, User responsible, State state, String description) {
+    public Task(long dueDate, User responsible, State state, String description, String owner) {
         this.dueDate = dueDate;
         this.responsible = responsible;
         this.state = state;
         this.description = description;
-        this.id = String.valueOf(this.hashCode());
+        this.owner = owner;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dueDate, responsible, state, description);
+        return Objects.hash(dueDate, responsible, state, description, owner);
     }
 
     public String getId() {
@@ -64,5 +65,13 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

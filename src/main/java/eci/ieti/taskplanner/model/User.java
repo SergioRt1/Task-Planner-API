@@ -17,8 +17,9 @@ public class User {
     public User() {
     }
 
-    public User(String email) {
+    public User(String name, String email) {
         this.email = email;
+        this.name = name;
     }
 
     @Override
