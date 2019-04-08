@@ -1,6 +1,7 @@
 package eci.ieti.taskplanner.controller;
 
 import eci.ieti.taskplanner.model.Task;
+import eci.ieti.taskplanner.model.User;
 import eci.ieti.taskplanner.services.TaskService;
 import eci.ieti.taskplanner.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,9 +67,9 @@ public class TaskController {
     }
 
     @PutMapping("/assign/{taskId}")
-    public ResponseEntity<?> assignTaskHandler(@PathVariable("taskId") String taskId, @RequestBody String username) {
+    public ResponseEntity<?> assignTaskHandler(@PathVariable("taskId") String taskId, @RequestBody User user) {
         try {
-            return new ResponseEntity<>(taskService.assignTaskToUser(taskId, username), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(taskService.assignTaskToUser(taskId, user), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }

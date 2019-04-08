@@ -1,6 +1,7 @@
 package eci.ieti.taskplanner.services;
 
 import eci.ieti.taskplanner.model.Task;
+import eci.ieti.taskplanner.model.User;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface TaskService {
 
     List<Task> getTasksByUserId(String userId);
 
-    Task assignTaskToUser(String taskId, String username) throws TaskPlannerException;
+    Task assignTaskToUser(String taskId, User user) throws TaskPlannerException;
 
     void removeTask(String taskId);
 

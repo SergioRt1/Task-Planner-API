@@ -78,9 +78,9 @@ public class InMemory implements Persistence {
     }
 
     @Override
-    public Task assignTaskToUser(String taskId, String username) throws TaskPlannerException {
+    public Task assignTaskToUser(String taskId, User user) throws TaskPlannerException {
         Task task = getTask(taskId);
-        task.setResponsible(username);
+        task.setResponsible(user);
         return this.updateTask(task);
     }
 

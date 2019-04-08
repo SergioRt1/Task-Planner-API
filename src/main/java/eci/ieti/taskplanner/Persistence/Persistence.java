@@ -20,7 +20,7 @@ public interface Persistence {
 
     void removeTask(String id);
 
-    Task assignTaskToUser(String taskId, String username) throws TaskPlannerException;
+    Task assignTaskToUser(String taskId, User user) throws TaskPlannerException;
 
     List<User> getUsers();
 

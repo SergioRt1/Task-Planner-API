@@ -2,6 +2,7 @@ package eci.ieti.taskplanner.services;
 
 import eci.ieti.taskplanner.Persistence.Persistence;
 import eci.ieti.taskplanner.model.Task;
+import eci.ieti.taskplanner.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,8 @@ public class TaskServiceStub implements TaskService {
     }
 
     @Override
-    public Task assignTaskToUser(String taskId, String username) throws TaskPlannerException {
-        return persistence.assignTaskToUser(taskId, username);
+    public Task assignTaskToUser(String taskId, User user) throws TaskPlannerException {
+        return persistence.assignTaskToUser(taskId, user);
     }
 
     @Override
