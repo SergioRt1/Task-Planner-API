@@ -1,10 +1,14 @@
 package eci.ieti.taskplanner.model;
 
+import org.springframework.data.annotation.Id;
+
 public class User {
+
+    @Id
+    private String username;
 
     private String name;
     private String email;
-    private String username;
     private String password;
 
     public User(String name, String email, String username, String password) {

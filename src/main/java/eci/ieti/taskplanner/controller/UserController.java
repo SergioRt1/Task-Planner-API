@@ -43,15 +43,6 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> createUserHandler(@RequestBody User user) {
-        try {
-            return new ResponseEntity<>(userService.createUser(user), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserHandler(@PathVariable String id) {
         try {

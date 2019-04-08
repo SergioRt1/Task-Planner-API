@@ -1,20 +1,24 @@
 package eci.ieti.taskplanner.model;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Objects;
 
 public class Task {
 
+    @Id
     private String id;
+
     private String owner;
     private long dueDate;
-    private User responsible;
+    private String responsible;
     private State state;
     private String description;
 
     public Task() {
     }
 
-    public Task(long dueDate, User responsible, State state, String description, String owner) {
+    public Task(long dueDate, String responsible, State state, String description, String owner) {
         this.dueDate = dueDate;
         this.responsible = responsible;
         this.state = state;
@@ -43,11 +47,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public User getResponsible() {
+    public String getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(User responsible) {
+    public void setResponsible(String responsible) {
         this.responsible = responsible;
     }
 
